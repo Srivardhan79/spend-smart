@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpendSmart Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>SpendSmart</h1>
+    <p>Simple monthly expense tracker</p>
+  </header>
+  <main>
+    <section class="summary">
+      <div class="card"><h3>This Month's Spending</h3><p id="total">₹0.00</p></div>
+      <div class="card"><h3>Expenses This Month</h3><p id="count">0</p></div>
+      <div class="card"><h3>Budget Remaining</h3><p id="remaining">₹0.00</p></div>
+    </section>
+    <p id="warning" class="warning" hidden></p>
+    <section class="panel">
+      <h2>Monthly Budget</h2>
+      <form id="budgetForm" class="inline-form">
+        <label for="budget">Budget (₹)</label>
+        <input id="budget" type="number" min="0" step="0.01" placeholder="Enter monthly budget" required>
+        <button type="submit">Save Budget</button>
+      </form>
+    </section>
+    <section class="panel">
+      <h2>Add an Expense</h2>
+      <form id="expenseForm">
+        <label for="name">Expense name</label>
+        <input id="name" type="text" maxlength="60" placeholder="e.g. Lunch" required>
+        <label for="amount">Amount (₹)</label>
+        <input id="amount" type="number" min="0.01" step="0.01" placeholder="e.g. 150" required>
+        <label for="category">Category</label>
+        <select id="category" required>
+          <option value="Food">Food</option>
+          <option value="Travel">Travel</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Other">Other</option>
+        </select>
+        <label for="date">Date</label>
+        <input id="date" type="date" required>
+        <button type="submit">Add Expense</button>
+      </form>
+    </section>
+    <section class="panel">
+      <h2>Your Expenses</h2>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Search by name">
+        <select id="filterCategory">
+          <option value="All">All categories</option>
+          <option value="Food">Food</option>
+          <option value="Travel">Travel</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Other">Other</option>
+        </select>
+        <button id="sortButton" type="button">Sort by date: newest</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Amount</th><th>Category</th><th>Date</th><th>Action</th></tr>
+          </thead>
+          <tbody id="expenseRows"></tbody>
+        </table>
+      </div>
+      <p id="emptyMessage">No expenses found.</p>
+    </section>
+    <section class="panel">
+      <h2>Import and Export</h2>
+      <div class="actions">
+        <button id="exportButton" type="button">Export JSON</button>
+        <label class="file-label" for="importFile">Import JSON</label>
+        <input id="importFile" type="file" accept=".json,application/json">
+        <button id="clearButton" class="danger" type="button">Clear All Expenses</button>
+      </div>
+      <p class="note">Your expenses and budget are saved in this browser using localStorage.</p>
+    </section>
+    <section class="panel">
+      <h2>Optional: INR to USD</h2>
+      <button id="convertButton" type="button">Convert this month's spending to USD</button>
+      <p id="conversionResult">Exchange rate has not been loaded.</p>
+    </section>
+  </main>
+  <footer>SpendSmart • Beginner JavaScript Project</footer>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
